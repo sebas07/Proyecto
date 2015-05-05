@@ -1,14 +1,12 @@
 <?php namespace App\Http\Controllers;
 
-use App\Estudiante;
-
+use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\Estudiante;
 use Request;
 
 class EstudianteController extends Controller
 {
-
 
     public function __construct()
     {
@@ -29,6 +27,7 @@ class EstudianteController extends Controller
 
         $estudiante->save();
 
-        return redirect('home');
+        return view('ventanas.principal');
     }
+
 }
