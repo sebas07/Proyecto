@@ -11,7 +11,7 @@ use Request;
 class EstudianteController extends Controller
 {
     public function index(){
-        return view('estudiante');
+        return view('ventanas.estudiante');
     }
 
     public function crear(){
