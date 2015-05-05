@@ -17,8 +17,13 @@ Route::get('home', 'HomeController@index');
 Route::get('estudiante/new', 'EstudianteController@index');
 Route::post('estudiante/create', 'EstudianteController@crear');
 
+<<<<<<< HEAD
 Route::get('profesores/new', 'ProfesorController@nuevo');
 Route::post('profesores/create', 'ProfesorController@crear');
+=======
+//rutas usuarios
+Route::get('usuarios', 'UsuarioController@imprimirUsuarios');
+>>>>>>> origin/master
 
 Route::get('cursos/new', 'CursosController@nuevo');
 Route::post('cursos/create', 'CursosController@crear');
