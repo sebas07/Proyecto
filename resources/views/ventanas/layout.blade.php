@@ -13,7 +13,7 @@
         <nav>
             <ul id="mainMenu">
                 <li><a href="{{ url('/', null) }}">Principal</a></li>
-                <li><a href="">Administrar usuarios</a></li>
+                <li><a href="{{ url('usuarios', null) }}">Administrar usuarios</a></li>
                 <li><a href="{{ url('estudiante/new', null) }}">Agregar Estudiante</a></li>
                 <li><a href="">Agregar Cursos</a></li>
                 <li><a href="">Agregar Profesor</a></li>

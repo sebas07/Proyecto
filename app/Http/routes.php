@@ -15,6 +15,8 @@
 Route::get('estudiante/new', 'EstudianteController@index');
 Route::post('estudiante/create', 'EstudianteController@crear');
 
+//rutas usuarios
+Route::get('usuarios', 'UsuarioController@imprimirUsuarios');
 
 Route::get('home', 'HomeController@index');
 
