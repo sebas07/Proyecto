@@ -11,22 +11,15 @@
 |
 */
 
-Route::get('/', function(){return view('principal');});
+//Route::get('/', function(){return view('ventanas.principal');});
 Route::get('estudiante/new', 'EstudianteController@index');
 Route::post('estudiante/create', 'EstudianteController@crear');
 
-// GET route
-Route::get('login', function() {
-    return View::make('login');
-});
-
-//POST route
-Route::post('login', 'AccountController@login');
-
-
-
 
 Route::get('home', 'HomeController@index');
+
+
+Route::get('/', 'HomeController@index');
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
