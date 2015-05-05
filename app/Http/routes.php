@@ -14,7 +14,12 @@
 Route::get('/', function(){return view('principal');});
 Route::get('estudiante/new', 'EstudianteController@index');
 
-
+// GET route
+Route::get('login', function() {
+    return View::make('login');
+});
+//POST route
+Route::post('login', 'AccountController@login');
 
 Route::get('home', 'HomeController@index');
 Route::controllers([
