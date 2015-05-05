@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Estudiante extends Model {
 
-    protected $table = 'estudiante';
+    protected $table = 'estudiantes';
 
     protected $fillable = [
         'carnet',
