@@ -12,9 +12,11 @@
 */
 
 Route::get('/', function(){return view('principal');});
+Route::get('estudiante/new', 'EstudianteController@index');
+
+
 
 Route::get('home', 'HomeController@index');
-
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
