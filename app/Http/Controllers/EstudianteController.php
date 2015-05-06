@@ -13,8 +13,15 @@ class EstudianteController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(){
-        return view('ventanas.estudiante');
+    public function index()
+    {
+        $estudiantes = Estudiante::all();
+        return view('ventanas.estudiante', compact('estudiantes'));
+    }
+
+    public function nuevo()
+    {
+        return view('ventanas.estudiante', compact('estudiantes'));
     }
 
     public function crear(){
@@ -29,5 +36,7 @@ class EstudianteController extends Controller
 
         return view('ventanas.principal');
     }
+
+
 
 }
