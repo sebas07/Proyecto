@@ -3,7 +3,7 @@
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
-
+use Hash;
 use Request;
 
 class UsuarioController extends Controller
@@ -33,7 +33,8 @@ class UsuarioController extends Controller
 
 
     public function openFormCreate(){
-        return view('ventanas.addUser');
+        $errores=[];
+        return view('ventanas.addUser',compact('errores'));
     }
 
     public function validar($input){
@@ -42,24 +43,30 @@ class UsuarioController extends Controller
             'name' => 'required|max:255',
             'username' => 'required|max:60',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
+            'password' => 'required|confirmed|min:3',
         ]);
     }
     public function crear(){
         $input = Request::all();
 
-        $validalor = validar($input);
-        if ($validalor->fails){
+        $validalor = $this->validar($input);
+        if ($validalor->fails()){
             $errores= $validalor->messages();
-            return view('ventanas.usuarios', compact('errores'));
+            return view('ventanas.addUser', compact('errores'));
         } else{
             $usu = new User();
             $usu->name = $input['name'];
             $usu->username = $input['username'];
             $usu->email = $input['email'];
             $usu->password = $input['password'];
+            \DB::table('users')->insert(array(
+                'name'     => $usu->name,
+                'username' => $usu->username,
+                'email'    => $usu->email,
+                'password' => Hash::make( $usu->password)
+            ));
             //crear usu aqui
-            $this->imprimirUsuarios();
+            return redirect('usuarios');
         }
 
 

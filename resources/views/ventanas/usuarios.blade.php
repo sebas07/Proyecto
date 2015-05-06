@@ -3,7 +3,9 @@
 @section('title', 'Usuarios')
 
 @section('content')
-
+    <section class="col-md-3">
+        <a class="btn btn-primary" href="ususarios/add">Crear nuevo usuario</a>
+    </section>
     <section class="col-md-12 seccion" style="height:600px;overflow-y:scroll;">
         <table id="usaurios">
             <caption id="tableTitle">Lista de usuarios</caption>
@@ -51,8 +53,6 @@
             @endforeach
         </table>
     </section>
-    <section class="col-md-3">
-        <a class="glyphicon-link" href="ususarios/add">Crear nuevo usuario</a>
-    </section>
+
 
 @stop
