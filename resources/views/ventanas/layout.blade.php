@@ -15,7 +15,7 @@
                     <ul id="mainMenu">
                         <li><a href="{{ url('/', null) }}">Principal</a></li>
                         <li><a href="{{ url('usuarios', null) }}">Administrar usuarios</a></li>
-                        <li><a href="{{ url('estudiante/new', null) }}">Agregar Estudiante</a></li>
+                        <li><a href="{{ url('estudiante', null) }}">Gestion de estudiante</a></li>
                         <li><a href="{{ url('cursos/new', null) }}">Agregar Cursos</a></li>
                         <li><a href="{{ url('profesores/new', null) }}">Agregar Profesor</a></li>
                         <li><a href="">Matricular Estudiante</a></li>

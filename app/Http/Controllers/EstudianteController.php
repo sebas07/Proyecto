@@ -21,7 +21,7 @@ class EstudianteController extends Controller
 
     public function nuevo()
     {
-        return view('ventanas.estudiante', compact('estudiantes'));
+        return view('ventanas.agregarEstudiante');
     }
 
     public function crear(){

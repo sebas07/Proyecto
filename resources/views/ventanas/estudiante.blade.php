@@ -1,60 +1,34 @@
 @extends('ventanas.layout')
 
 @section('title')
-    Nuevo estudiante
-@stop
-
-@section('contentt')
-    <h1>Agregar un estudiante nuevo</h1>
-    <hr />
-    <br />
-    <div class="col-md-offset-2 col-md-5">
-        {!! Form::open(['url' => 'estudiante/create']) !!}
-            <div class="form-group">
-                {!! Form::label('carnet', 'Carnet del estudiante: ') !!}
-                {!! Form::text('carnet', null, ['class' => "form-control"]) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('nombre', 'Nombre del estudiante: ') !!}
-                {!! Form::text('nombre', null, ['class' => "form-control"]) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('apellidos', 'Apellidos del estudiante: ') !!}
-                {!! Form::text('apellidos', null, ['class' => "form-control"]) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('fecha_nacimiento', 'Fecha de nacimiento: ') !!}
-                {!! Form::input('date', 'fecha_nacimiento', date('Y-m-d'), ['class' => "form-control"]) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::submit('Agregar al estudiante',['class' => "btn btn-primary form-control"]) !!}
-            </div>
-        {!! Form::close() !!}
-    </div>
+    Estudiantes
 @stop
 
 @section('content')
-    <section class="col-md-12 seccion" style="height:600px;overflow-y:scroll;">
+    <section class="col-md-offset-1 col-md-10" style="height:600px;overflow-y:scroll;">
         <table class="table table-hover" id="estudiantes">
+            <div id="btnAgregar">
+                <a href="{{ action('EstudianteController@nuevo', null) }}" class="btn btn-primary">Agregar estudiante</a>
+            </div>
             <caption id="tableTitle">Estudiantes</caption>
             <tr>
-                <th class="tableH" style="max-width: 190px; width: 190px; overflow: hidden">Carnet</th>
-                <th class="tableH" style="max-width: 275px; width: 275px; overflow: hidden">Nombre</th>
+                <th class="tableH" style="max-width: 150px; width: 150px; overflow: hidden">Carnet</th>
+                <th class="tableH" style="max-width: 175px; width: 175px; overflow: hidden">Nombre</th>
                 <th class="tableH" style="max-width: 145px; width: 145px; overflow: hidden">Apellidos</th>
-                <th class="tableH" style="max-width: 160px; width: 160px; overflow: hidden">Fecha de nacimiento</th>
-                <th class="tableH" style="max-width: 310px; width: 310px; overflow: hidden">Opciones</th>
+                <th class="tableH" style="max-width: 180px; width: 180px; overflow: hidden">Fecha de nacimiento</th>
+                <th class="tableH" style="max-width: 200px; width: 200px; overflow: hidden">Opciones</th>
             </tr>
             @foreach($estudiantes as $estudiante)
             <tr>
-                <td class="tableD" style="max-width: 190px; width:190px; overflow: hidden">
+                <td class="tableD" style="max-width: 150px; width:150px; overflow: hidden">
                     {{ $estudiante->carnet }}</td>
-                <td class="tableD" style="max-width: 275px; width:275px; overflow: hidden">
+                <td class="tableD" style="max-width: 175px; width:175px; overflow: hidden">
                     {{ $estudiante->nombre }}</td>
                 <td class="tableD" style="max-width: 145px; width:145px; overflow: hidden">
                     {{ $estudiante->apellidos }}</td>
-                <td class="tableD" style="max-width: 160px; width:160px; overflow: hidden">
+                <td class="tableD" style="max-width: 180px; width:180px; overflow: hidden">
                     {{ $estudiante->fecha_nacimiento }}</td>
-                <td class="tableD" style="max-width: 310px; overflow: hidden">
+                <td class="tableD" style="max-width: 200px; overflow: hidden">
                 <div class="right">
                     <a href="{{ action('EstudianteController@index', [$estudiante->id]) }}" class="btn btn-danger">Borrar</a>
                 </div>
@@ -67,3 +41,19 @@
         </table>
     </section>
 @stop
+
+<style>
+#tableTitle {
+    font-size: 180%;
+    font-weight: bold;
+    padding: 10px 0px;
+    margin-bottom: 20px;
+}
+#btnAgregar {
+    margin: 10px 0px;
+}
+.right {
+    float:right;
+    margin: 5px;
+}
+</style>
