@@ -51,5 +51,8 @@
             @endforeach
         </table>
     </section>
+    <section class="col-md-3">
+        <a class="glyphicon-link" href="ususarios/add">Crear nuevo usuario</a>
+    </section>
 
 @stop
