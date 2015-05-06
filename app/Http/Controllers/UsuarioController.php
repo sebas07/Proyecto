@@ -58,17 +58,44 @@ class UsuarioController extends Controller
             $usu->name = $input['name'];
             $usu->username = $input['username'];
             $usu->email = $input['email'];
-            $usu->password = $input['password'];
-            \DB::table('users')->insert(array(
-                'name'     => $usu->name,
-                'username' => $usu->username,
-                'email'    => $usu->email,
-                'password' => Hash::make( $usu->password)
-            ));
-            //crear usu aqui
+            $usu->password = Hash::make($input['password']);
+//            \DB::table('users')->insert(array(
+//                'name'     => $usu->name,
+//                'username' => $usu->username,
+//                'email'    => $usu->email,
+//                'password' => Hash::make( $usu->password)
+//            ));
+            $usu->save();
+            return redirect('usuarios');
+        }
+    }
+
+    public function openUpdtForm($id){
+        $errores=[];
+        $usuario = User::find($id);
+        return view('ventanas.updtUser',compact('errores','usuario'));
+    }
+
+    public function update(){
+        $input = Request::all();
+        $usu = User::find($input['id']);
+        $usuario = $usu;
+        $validalor = $this->validar($input);
+        if ($validalor->fails()){
+            $errores= $validalor->messages();
+            return view('ventanas.updtUser', compact('errores','usuario'));
+        } else{
+
+            $usu->name = $input['name'];
+            $usu->username = $input['username'];
+            $usu->email = $input['email'];
+            $usu->password = Hash::make($input['password']);
+            $usu->save();
             return redirect('usuarios');
         }
 
 
+
     }
+
 }

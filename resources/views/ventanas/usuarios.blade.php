@@ -3,13 +3,14 @@
 @section('title', 'Usuarios')
 
 @section('content')
+    <section class="col-md-offset-1 col-md-10" style="height:600px;overflow-y:scroll;">
     <section class="col-md-3">
         <a class="btn btn-primary" href="ususarios/add">Crear nuevo usuario</a>
     </section>
-    <section class="col-md-12 seccion" style="height:600px;overflow-y:scroll;">
-        <table id="usaurios">
+
+        <table id="usaurios" class="table table-hover">
             <caption id="tableTitle">Lista de usuarios</caption>
-            <tr>
+            <tr style="background-color: #2175bc">
                 <th class="tableH" style="max-width: 155px; width: 155px; overflow: hidden">Nombre</th>
                 <th class="tableH" style="max-width: 155px; width: 155px; overflow: hidden">Nombre usuario</th>
                 <th class="tableH" style="max-width: 215px; width: 215px; overflow: hidden">Correo</th>
@@ -18,15 +19,15 @@
             </tr>
             <tr>
                 <td class="tableD" style="max-width: 155px; width:155px; overflow: hidden">
-                    {!! Auth::user()->name!!}</td>
+                    <p style="color: #2175bc"> {!! Auth::user()->name!!}</p></td>
                 <td class="tableD" style="max-width: 155px; width:155px; overflow: hidden">
-                    {!! Auth::user()->username!!}</td>
+                    <p style="color: #2175bc">{!! Auth::user()->username!!}</p></td>
                 <td class="tableD" style="max-width: 215px; width:215px; overflow: hidden">
-                    {!! Auth::user()->email!!}</td>
+                    <p style="color: #2175bc"> {!! Auth::user()->email!!}</p></td>
                 <td class="tableD" style="max-width: 310px; overflow: hidden">
 
                     <div class="right">
-                        <a href="" class="btn btn-success">Modificar</a>
+                        <a href="{{ action('UsuarioController@openUpdtForm', [Auth::user()->id]) }}" class="btn btn-success">Modificar</a>
                     </div>
 
                 </td>
@@ -43,7 +44,7 @@
                     <td class="tableD" style="max-width: 310px; overflow: hidden">
 
                         <div class="right">
-                            <a href="" class="btn btn-success">Modificar</a>
+                            <a href="{{ action('UsuarioController@openUpdtForm', [$usuario->id]) }}" class="btn btn-success">Modificar</a>
                         </div>
                         <div class="right">
                             <a href="" class="btn btn-danger">Borrar</a>
@@ -53,6 +54,20 @@
             @endforeach
         </table>
     </section>
-
+    <style>
+        #tableTitle {
+            font-size: 180%;
+            font-weight: bold;
+            padding: 10px 0px;
+            margin-bottom: 20px;
+        }
+        #btnAgregar {
+            margin: 10px 0px;
+        }
+        .right {
+            float:left;
+            margin: 5px;
+        }
+    </style>
 
 @stop
