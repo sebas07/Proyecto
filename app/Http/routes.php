@@ -18,15 +18,24 @@ Route::get('estudiante', 'EstudianteController@index');
 Route::get('estudiante/new', 'EstudianteController@nuevo');
 Route::post('estudiante/create', 'EstudianteController@crear');
 
-
+Route::get('profesores', 'ProfesorController@index');
 Route::get('profesores/new', 'ProfesorController@nuevo');
+Route::get('profesores/old/{id}', 'ProfesorController@existente');
+Route::get('profesores/destroy/{id}', 'ProfesorController@borrar');
+
 Route::post('profesores/create', 'ProfesorController@crear');
+Route::post('profesores/modify/{id}', 'ProfesorController@modificar');
+
+Route::get('cursos', 'CursosController@index');
+Route::get('cursos/new', 'CursosController@nuevo');
+Route::get('cursos/old/{id}', 'CursosController@existente');
+Route::get('cursos/destroy/{id}', 'CursosController@borrar');
+
+Route::post('cursos/create', 'CursosController@crear');
+Route::post('cursos/modify/{id}', 'CursosController@modificar');
 
 //rutas usuarios
 Route::get('usuarios', 'UsuarioController@imprimirUsuarios');
-
-Route::get('cursos/new', 'CursosController@nuevo');
-Route::post('cursos/create', 'CursosController@crear');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

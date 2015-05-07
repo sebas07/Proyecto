@@ -14,4 +14,9 @@ class Curso extends Model {
         'semestre'
     ];
 
+    public function profesor()
+    {
+        return $this->belongsTo('App\Profesor', 'id_profesor');
+    }
+
 }

@@ -26,7 +26,6 @@ class CreateCursosTable extends Migration {
                 ->references('id')
                 ->on('profesor')
                 ->onDelete('cascade');
-
 		});
 	}
 

@@ -12,4 +12,9 @@ class Profesor extends Model {
         'especialidad'
     ];
 
+    public function cursos()
+    {
+        return $this->hasMany('App\Curso', 'id_profesor');
+    }
+
 }
