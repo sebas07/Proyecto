@@ -16,7 +16,7 @@
                     <th class="tableH" style="max-width: 175px; width: 175px; overflow: hidden">Nombre</th>
                     <th class="tableH" style="max-width: 150px; width: 150px; overflow: hidden">Sigla</th>
                     <th class="tableH" style="max-width: 145px; width: 145px; overflow: hidden">Profesor</th>
-                    <th class="tableH" style="max-width: 200px; width: 200px; overflow: hidden">Opciones</th>
+                    <th class="tableH" style="max-width: 250px; width: 250px; overflow: hidden">Opciones</th>
                 </tr>
                 @foreach($cursos as $curso)
                 <tr>
@@ -26,13 +26,16 @@
                         {{ $curso->sigla }}</td>
                     <td class="tableD" style="max-width: 145px; width:145px; overflow: hidden">
                         {{ $curso->profesor->nombre }}</td>
-                    <td class="tableD" style="max-width: 200px; overflow: hidden">
-                    <div class="right">
-                        <a href="{{ action('CursosController@borrar', [$curso->id]) }}" class="btn btn-danger">Borrar</a>
-                    </div>
-                    <div class="right">
-                        <a href="{{ action('CursosController@existente', [$curso->id]) }}" class="btn btn-success">Modificar</a>
-                    </div>
+                    <td class="tableD" style="max-width: 250px; overflow: hidden">
+                        <div class="right">
+                            <a href="{{ action('CursosController@borrar', [$curso->id]) }}" class="btn btn-danger">Borrar</a>
+                        </div>
+                        <div class="right">
+                            <a href="{{ action('CursosController@existente', [$curso->id]) }}" class="btn btn-success">Modificar</a>
+                        </div>
+                        <div class="right">
+                            <a href="{{ action('CursosController@verDatos', [$curso->id]) }}" class="btn btn-success">Ver datos</a>
+                        </div>
                     </td>
                 </tr>
                 @endforeach
@@ -58,7 +61,7 @@
                 </div>
                 <div class="form-group">
                     {!! Form::label('descripcion', 'Descripcion del curso: ') !!}
-                    {!! Form::text('descripcion', null, ['class' => "form-control"]) !!}
+                    {!! Form::textarea('descripcion', null, ['class' => "form-control", 'id' => 'textA']) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('semestre', 'Semestre del curso: ') !!}
@@ -89,7 +92,7 @@
                 </div>
                 <div class="form-group">
                     {!! Form::label('descripcion', 'Descripcion del curso: ') !!}
-                    {!! Form::text('descripcion', null, ['class' => "form-control"]) !!}
+                    {!! Form::textarea('descripcion', null, ['class' => "form-control", 'id' => 'textA']) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('semestre', 'Semestre del curso: ') !!}
@@ -103,8 +106,48 @@
                 </div>
             {!! Form::close() !!}
         </div>
+    @elseif($accion == 'display')
+        <br />
+        <div class="col-md-offset-2 col-md-5">
+            <table class="table table-hover" id="curso">
+                <caption id="tableTitle">Datos del curso</caption>
+                <tr>
+                    <td class="tableD" style="overflow: hidden">
+                    {{ $curso->nombre }}</td>
+                </tr>
+                <tr>
+                    <td class="tableD" style="overflow: hidden">
+                    {{ $curso->sigla }}</td>
+                </tr>
+                <tr>
+                    <td class="tableD" style="overflow: hidden">
+                    {{ $curso->profesor->nombre }}</td>
+                </tr>
+                <tr>
+                    <td class="tableD" style="overflow: hidden">
+                    {{ $curso->descripcion }}</td>
+                </tr>
+                <tr>
+                    <td class="tableD" style="overflow: hidden">
+                    {{ $curso->semestre }}</td>
+                </tr>
+            </table>
+        </div>
     @endif
 @stop
+
+{{--<script>--}}
+{{--jQuery(document).ready(function(){--}}
+{{--$('#searchC').autocomplete({--}}
+{{--source: 'autocompletar3.php',--}}
+{{--minLength: 2--}}
+{{--});--}}
+{{--$('#search').autocomplete({--}}
+{{--source: 'autocompletar2.php',--}}
+{{--minLength: 2--}}
+{{--});--}}
+{{--});--}}
+{{--</script>--}}
 
 <style>
 #tableTitle {
@@ -120,4 +163,7 @@
     float:right;
     margin: 5px;
 }
+ #textA {
+     height: 90px;
+ }
 </style>

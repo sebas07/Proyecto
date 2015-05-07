@@ -57,6 +57,13 @@ class CursosController extends Controller {
         return redirect('cursos');
     }
 
+    public function verDatos($id)
+    {
+        $accion = 'display';
+        $curso = Curso::findOrFail($id);
+        return view('ventanas.curso', compact('cursos', 'accion', 'profesores', 'curso'));
+    }
+
     public function existente($id)
     {
         $accion = 'modify';
@@ -64,5 +71,24 @@ class CursosController extends Controller {
         $profesores = Profesor::lists('nombre', 'id');
         return view('ventanas.curso', compact('cursos', 'accion', 'profesores', 'cursoE'));
     }
+
+    /*public function autocompletar()
+    {
+        if(!isset($_REQUEST['term'])) {
+            exit();
+        }
+        require('connection.php');
+        $resultado = mysql_query("select * from persona where cedula like '".($_REQUEST['term'])."%' order by idpersona asc", $link);
+        $data = array();
+        while ($row = mysql_fetch_assoc($resultado, MYSQL_ASSOC)) {
+            $label = $row['cedula'].' / '.$row['nombre'].' '.$row['apellido'];
+            $data[] = array(
+                'label' => $label,
+                'value' => $row['cedula']
+            );
+        }
+        echo json_encode($data);
+        flush();
+    }*/
 
 }

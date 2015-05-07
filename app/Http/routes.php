@@ -20,6 +20,7 @@ Route::post('estudiante/create', 'EstudianteController@crear');
 
 Route::get('profesores', 'ProfesorController@index');
 Route::get('profesores/new', 'ProfesorController@nuevo');
+Route::get('profesores/view/{id}', 'ProfesorController@verDatos');
 Route::get('profesores/old/{id}', 'ProfesorController@existente');
 Route::get('profesores/destroy/{id}', 'ProfesorController@borrar');
 
@@ -28,6 +29,7 @@ Route::post('profesores/modify/{id}', 'ProfesorController@modificar');
 
 Route::get('cursos', 'CursosController@index');
 Route::get('cursos/new', 'CursosController@nuevo');
+Route::get('cursos/view/{id}', 'CursosController@verDatos');
 Route::get('cursos/old/{id}', 'CursosController@existente');
 Route::get('cursos/destroy/{id}', 'CursosController@borrar');
 
