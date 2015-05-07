@@ -38,6 +38,13 @@ class ProfesorController extends Controller {
         return redirect('profesores');
     }
 
+    public function verDatos($id)
+    {
+        $accion = 'display';
+        $profesor = Profesor::findOrFail($id);
+        return view('ventanas.profesor', compact('profesores', 'accion', 'profesor'));
+    }
+
     public function modificar()
     {
         $data = Request::all();

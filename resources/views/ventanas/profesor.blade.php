@@ -16,7 +16,7 @@
                     <th class="tableH" style="max-width: 175px; width: 175px; overflow: hidden">Nombre</th>
                     <th class="tableH" style="max-width: 150px; width: 150px; overflow: hidden">Apellidos</th>
                     <th class="tableH" style="max-width: 145px; width: 145px; overflow: hidden">Especialidades</th>
-                    <th class="tableH" style="max-width: 200px; width: 200px; overflow: hidden">Opciones</th>
+                    <th class="tableH" style="max-width: 250px; width: 250px; overflow: hidden">Opciones</th>
                 </tr>
                 @foreach($profesores as $profesor)
                 <tr>
@@ -26,13 +26,16 @@
                         {{ $profesor->apellidos }}</td>
                     <td class="tableD" style="max-width: 145px; width:145px; overflow: hidden">
                         {{ $profesor->especialidad }}</td>
-                    <td class="tableD" style="max-width: 200px; overflow: hidden">
+                    <td class="tableD" style="max-width: 250px; overflow: hidden">
                     <div class="right">
                         <a href="{{ action('ProfesorController@borrar', [$profesor->id]) }}" class="btn btn-danger">Borrar</a>
                     </div>
                     <div class="right">
                         <a href="{{ action('ProfesorController@existente', [$profesor->id]) }}" class="btn btn-success">Modificar</a>
                     </div>
+                        <div class="right">
+                            <a href="{{ action('ProfesorController@verDatos', [$profesor->id]) }}" class="btn btn-success">Ver datos</a>
+                        </div>
                     </td>
                 </tr>
                 @endforeach
@@ -86,6 +89,31 @@
                     {!! Form::text('id', null, ['style' => 'visibility: hidden']) !!}
                 </div>
             {!! Form::close() !!}
+        </div>
+    @elseif($accion == 'display')
+        <br />
+        <div class="col-md-offset-2 col-md-5">
+            <table class="table table-hover" id="profesor">
+                <caption id="tableTitle">Datos del profesor</caption>
+                <tr>
+                    <td class="tableD" style="overflow: hidden">
+                    {{ $profesor->nombre }}</td>
+                </tr>
+                <tr>
+                    <td class="tableD" style="overflow: hidden">
+                    {{ $profesor->apellidos }}</td>
+                </tr>
+                <tr>
+                    <td class="tableD" style="overflow: hidden">
+                    {{ $profesor->especialidad }}</td>
+                </tr>
+                @foreach($profesor->cursos as $curso)
+                    <tr>
+                        <td class="tableD" style="overflow: hidden">
+                            {{ $curso->nombre }}</td>
+                    </tr>
+                @endforeach
+            </table>
         </div>
     @endif
 @stop
