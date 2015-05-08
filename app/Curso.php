@@ -19,4 +19,9 @@ class Curso extends Model {
         return $this->belongsTo('App\Profesor', 'id_profesor');
     }
 
+    public function estudiantes()
+    {
+        return $this->hasMany('App\CursoXEstudiante', 'id_curso');
+    }
+
 }

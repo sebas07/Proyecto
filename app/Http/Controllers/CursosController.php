@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Curso;
+use App\Estudiante;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -77,23 +78,32 @@ class CursosController extends Controller {
         return view('ventanas.curso', compact('cursos', 'accion', 'profesores', 'cursoE'));
     }
 
-    /*public function autocompletar()
+    public function reportIndex()
     {
-        if(!isset($_REQUEST['term'])) {
-            exit();
+        $accion = 'start';
+        return view('ventanas.reporte', compact('accion', 'curso'));
+    }
+
+    public function cargarReporte()
+    {
+        $data = Request::all();
+        $curso = Curso::where('sigla', '=', $data['sigla'])->first();
+        return redirect('cursos/report/'.$curso->id);
+    }
+
+    public function imprimirReporte($id)
+    {
+        $accion = 'display';
+        $curso = Curso::findOrFail($id);
+
+        $idsE = $curso->estudiantes;
+        $estudiantes = array();
+        foreach ($idsE as $idE) {
+            $estudiantes[] = Estudiante::find($idE->id_estudiante);
         }
-        require('connection.php');
-        $resultado = mysql_query("select * from persona where cedula like '".($_REQUEST['term'])."%' order by idpersona asc", $link);
-        $data = array();
-        while ($row = mysql_fetch_assoc($resultado, MYSQL_ASSOC)) {
-            $label = $row['cedula'].' / '.$row['nombre'].' '.$row['apellido'];
-            $data[] = array(
-                'label' => $label,
-                'value' => $row['cedula']
-            );
-        }
-        echo json_encode($data);
-        flush();
-    }*/
+        $curso->alumnos = $estudiantes;
+        //dd($curso);
+        return view('ventanas.reporte', compact('accion', 'curso'));
+    }
 
 }

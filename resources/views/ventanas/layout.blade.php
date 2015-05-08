@@ -30,7 +30,7 @@
                         <li><a href="{{ url('cursos', null) }}">Cursos</a></li>
                         <li><a href="{{ url('profesores', null) }}">Profesores</a></li>
                         <li><a href="{{ url('matricula', null) }}">Matricula</a></li>
-                        <li><a href="">Reporte</a></li>
+                        <li><a href="{{ url('cursos/report', null) }}">Reporte</a></li>
                     </ul>
                 </nav>
 

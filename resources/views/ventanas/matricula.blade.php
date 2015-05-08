@@ -6,11 +6,17 @@
 
 @section('content')
     @if($accion == 'start')
+
         <div class="col-md-offset-2 col-md-7">
-        <h1>Matricula</h1>
-        <hr />
-        </div>
-        <div class="col-md-offset-3 col-md-5">
+                <h1>Matricula</h1>
+                <hr />
+            </div>
+            <div class="col-md-offset-3 col-md-5">
+
+               
+                <div class="col-md-offset-2 col-md-5">
+                    <h1>Matricula</h1>
+                    <hr />
 
             {!! Form::open(['url' => 'matricula/student']) !!}
                 <div class="form-group">
