@@ -1,0 +1,7 @@
+//rutas usuarios
+Route::get('usuarios', 'UsuarioController@imprimirUsuarios');
+Route::get('ususarios/add', 'UsuarioController@openFormCreate');
+Route::post('ususarios/addnew', 'UsuarioController@crear');
+Route::get('ususarios/update/{id}', 'UsuarioController@openUpdtForm');
+Route::post('usuario/makeupdate', 'UsuarioController@update');
+Route::get('ususarios/delete/{id}', 'UsuarioController@eliminar');

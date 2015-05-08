@@ -41,8 +41,17 @@ class UsuarioController extends Controller
 
         return Validator::make($input, [
             'name' => 'required|max:255',
-            'username' => 'required|max:60',
-            'email' => 'required|email|max:255|unique:users',
+            'username' => 'required|max:60|unique:users',
+            'email' => 'required|email|max:255',
+            'password' => 'required|confirmed|min:3',
+        ]);
+    }
+
+    public function validarUpd($input){
+
+        return Validator::make($input, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255',
             'password' => 'required|confirmed|min:3',
         ]);
     }
@@ -59,12 +68,7 @@ class UsuarioController extends Controller
             $usu->username = $input['username'];
             $usu->email = $input['email'];
             $usu->password = Hash::make($input['password']);
-//            \DB::table('users')->insert(array(
-//                'name'     => $usu->name,
-//                'username' => $usu->username,
-//                'email'    => $usu->email,
-//                'password' => Hash::make( $usu->password)
-//            ));
+//
             $usu->save();
             return redirect('usuarios');
         }
@@ -80,7 +84,7 @@ class UsuarioController extends Controller
         $input = Request::all();
         $usu = User::find($input['id']);
         $usuario = $usu;
-        $validalor = $this->validar($input);
+        $validalor = $this->validarUpd($input);
         if ($validalor->fails()){
             $errores= $validalor->messages();
             return view('ventanas.updtUser', compact('errores','usuario'));
@@ -93,9 +97,13 @@ class UsuarioController extends Controller
             $usu->save();
             return redirect('usuarios');
         }
-
-
-
     }
+
+        public function eliminar($id) {
+            User::destroy($id);
+            return redirect('usuarios');
+        }
+
+
 
 }

@@ -47,7 +47,7 @@
                             <a href="{{ action('UsuarioController@openUpdtForm', [$usuario->id]) }}" class="btn btn-success">Modificar</a>
                         </div>
                         <div class="right">
-                            <a href="" class="btn btn-danger">Borrar</a>
+                            <a href="{{ action('UsuarioController@eliminar', [$usuario->id]) }}" class="btn btn-danger">Eliminar</a>
                         </div>
                     </td>
                 </tr>
