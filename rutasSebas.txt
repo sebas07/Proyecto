@@ -26,6 +26,9 @@ Route::get('cursos/old/{id}', 'CursosController@existente');
 Route::get('cursos/destroy/{id}', 'CursosController@borrar');
 Route::post('cursos/create', 'CursosController@crear');
 Route::post('cursos/modify/{id}', 'CursosController@modificar');
+Route::get('cursos/report', 'CursosController@reportIndex');
+Route::post('cursos/report', 'CursosController@cargarReporte');
+Route::get('cursos/report/{id}', 'CursosController@imprimirReporte');
 
 //rutas usuarios
 Route::get('usuarios', 'UsuarioController@imprimirUsuarios');
