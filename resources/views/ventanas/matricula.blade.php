@@ -26,57 +26,62 @@
             {!! Form::close() !!}
         </div>
     @elseif($accion == 'enrollment')
-        <section class="row">
+        <section class="row" style="margin-left: 13%">
             <div class="col-md-5">
-                <div class="col-md-9">
+                <div class="col-md-10">
                 <table class="table table-hover" id="estudiante">
                     <caption id="tableTitle"><strong>Datos del estudiante</strong></caption>
                     <tr>
                         <td class="tableD" style="overflow: hidden">
-                            {{ $estudiante->nombre. ' '.$estudiante->apellidos}}</td>
+                            <strong>Nombre:</strong>{{ ' '.$estudiante->nombre. ' '.$estudiante->apellidos}}</td>
                     </tr>
                     <tr>
                         <td class="tableD" style="overflow: hidden">
-                        {{'Carnet: '. $estudiante->carnet }}</td>
+                            <strong>Carnet:</strong>{{ ' '.$estudiante->carnet }}</td>
                     </tr>
                     <tr>
                         <td class="tableD" style="overflow: hidden">
-                        {{'Fecha de nacimiento: '. $estudiante->fecha_nacimiento }}</td>
+                            <strong>Fecha de nacimiento:</strong>{{ ' '.$estudiante->fecha_nacimiento }}</td>
                     </tr>
                 </table>
             </div>
             </div>
-
-            <div class="col-md-6">
-                <table class="table table-hover" id="estudiante">
-                    <caption id="tableTitle"><strong>Cursos matriculables</strong></caption>
-                    @foreach($otros as $otro)
-                        <tr>
-                            <td class="tableD" style="max-width: 250px; overflow: hidden">
-                                <div class="right">
-                                    <a href="{{ action('MatriculaController@matricular', [$estudiante->id, $otro->id]) }}" class="btn btn-success">Matricular</a>
-                                </div>
-                                <div class="left">
-                                    {{ $otro->nombre }}
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
-                </table>
-            </div>
-        </section>
-            <section class="row">
-            <div class="col-md-5">
+            <div class=" col-md-7">
                 <table class="table table-hover" id="estudiante">
                     <caption id="tableTitle"><strong>Cursos matriculados</strong></caption>
                     @foreach($estudiante->cursos_matriculados as $curso)
                         <tr>
                             <td class="tableD" style="overflow: hidden">
-                                {{ $curso->nombre }}</td>
+                                {{ $curso->sigla.'    '.$curso->nombre }}
+                            </td>
+                            <td class="tableD" style="overflow: hidden">
+                                <a href="{{ action('MatriculaController@desMatricular', [$estudiante->id, $curso->id]) }}" class="btn btn-danger">Quitar</a>
+                            </td>
                         </tr>
                     @endforeach
                 </table>
             </div>
+            <br />
+        </section>
+            <section class="row">
+                <div class="col-md-offset-3 col-md-6">
+                    <table class="table table-hover" id="estudiante">
+                        <caption id="tableTitle"><strong>Cursos matriculables</strong></caption>
+                        @foreach($otros as $otro)
+                            <tr>
+                                <td class="tableD" style="max-width: 250px; overflow: hidden">
+                                    <div class="right">
+                                        <a href="{{ action('MatriculaController@matricular', [$estudiante->id, $otro->id]) }}" class="btn btn-success">Matricular</a>
+                                    </div>
+                                    <div class="left">
+                                        {{ $otro->sigla.'  '.$otro->nombre }}
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </table>
+                </div>
+
         </section>
 
     @endif

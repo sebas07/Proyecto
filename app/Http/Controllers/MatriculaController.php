@@ -56,9 +56,19 @@ class MatriculaController extends Controller {
         $matricula = new CursoXEstudiante();
         $matricula->id_estudiante = $idS;
         $matricula->id_curso = $idC;
-
         $matricula->save();
         return redirect('matricula/student/'.$idS);
+    }
+
+    public function desMatricular($idS,$isC) {
+       $matriculas = CursoXEstudiante::all();
+        foreach($matriculas as $matricula) {
+            if (($matricula->id_estudiante == $idS)&&($matricula->id_curso==$isC)){
+                CursoXEstudiante::destroy($matricula->id);
+            }
+        }
+        return redirect('matricula/student/'.$idS);
+
     }
 
 }

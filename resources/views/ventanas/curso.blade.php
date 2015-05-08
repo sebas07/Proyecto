@@ -134,7 +134,7 @@
                         <strong>Semestre:</strong>{{ ' '.$curso->semestre }}</td>
                 </tr>
             </table>
-            <a href="{{ action('CursosController@index', [$curso->id]) }}" class="btn btn-primary">Ver reporte</a>
+            <a href="{{ action('CursosController@imprimirReporte', [$curso->id]) }}" class="btn btn-primary">Ver reporte</a>
         </div>
     @endif
 @stop
