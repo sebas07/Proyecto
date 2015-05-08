@@ -5,3 +5,5 @@ Route::post('ususarios/addnew', 'UsuarioController@crear');
 Route::get('ususarios/update/{id}', 'UsuarioController@openUpdtForm');
 Route::post('usuario/makeupdate', 'UsuarioController@update');
 Route::get('ususarios/delete/{id}', 'UsuarioController@eliminar');
+//rutas estudiantes de LUIS
+Route::get('estudiante/delete/{id}', 'EstudianteController@eliminar');

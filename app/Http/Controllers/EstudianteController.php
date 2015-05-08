@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Estudiante;
 use Request;
 use Validator;
+use Redirect;
 
 class EstudianteController extends Controller
 {
@@ -22,7 +23,8 @@ class EstudianteController extends Controller
 
     public function nuevo()
     {
-        return view('ventanas.agregarEstudiante');
+        $errores=[];
+        return view('ventanas.agregarEstudiante',compact('errores'));
     }
 
     public function validar($input){
@@ -31,7 +33,7 @@ class EstudianteController extends Controller
             'carnet' => 'required|max:7|min:6|unique:estudiantes',
             'nombre' => 'required|max:100',
             'apellidos' => 'required|max:100',
-            'fecha_nacimiento' => 'required|date_format:"Y/m/d"',
+            'fecha_nacimiento' => 'required|date_format:"Y-m-d"',
         ]);
     }
 
@@ -40,7 +42,8 @@ class EstudianteController extends Controller
         $validator = $this->validar($input);
         if ($validator->fails())
         {
-            return Redirect::to('ventanas.principal')->withErrors($validator);
+            $errores= $validator->messages();
+            return view('ventanas.agregarEstudiante',compact('errores'));
         } else {
 
             $estudiante = new Estudiante();
@@ -49,8 +52,16 @@ class EstudianteController extends Controller
             $estudiante->apellidos = $input['apellidos'];
             $estudiante->fecha_nacimiento = $input['fecha_nacimiento'];
             $estudiante->save();
-            return view('ventanas.principal');
+            $estudiantes = Estudiante::all();
+            return view('ventanas.estudiante', compact('estudiantes'));
         }
+    }
+
+    public function eliminar($id) {
+        Estudiante::destroy($id);
+        $estudiantes = Estudiante::all();
+        return view('ventanas.estudiante', compact('estudiantes'));
+
     }
 
 

@@ -9,11 +9,11 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Registrar usuario</div>
                     <div class="panel-body">
-                        @if (count($errors) > 0)
+                        @if (count($errores) > 0)
                             <div class="alert alert-danger">
                                 <strong>Whoops!</strong> There were some problems with your input.<br><br>
                                 <ul>
-                                    @foreach ($errors->all() as $error)
+                                    @foreach ($errores->all() as $error)
                                         <li>{{ $error }}</li>
                                     @endforeach
                                 </ul>

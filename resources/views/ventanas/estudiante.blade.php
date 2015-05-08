@@ -6,10 +6,11 @@
 
 @section('content')
     <section class="col-md-offset-1 col-md-10" style="height:600px;overflow-y:scroll;">
+        <div id="btnAgregar">
+            <a href="{{ action('EstudianteController@nuevo', null) }}" class="btn btn-primary">Agregar estudiante</a>
+        </div>
         <table class="table table-hover" id="estudiantes">
-            <div id="btnAgregar">
-                <a href="{{ action('EstudianteController@nuevo', null) }}" class="btn btn-primary">Agregar estudiante</a>
-            </div>
+
             <caption id="tableTitle">Estudiantes</caption>
             <tr>
                 <th class="tableH" style="max-width: 150px; width: 150px; overflow: hidden">Carnet</th>
@@ -30,7 +31,7 @@
                     {{ $estudiante->fecha_nacimiento }}</td>
                 <td class="tableD" style="max-width: 200px; overflow: hidden">
                 <div class="right">
-                    <a href="{{ action('EstudianteController@index', [$estudiante->id]) }}" class="btn btn-danger">Borrar</a>
+                    <a href="{{ action('EstudianteController@eliminar', [$estudiante->id]) }}" class="btn btn-danger">Borrar</a>
                 </div>
                 <div class="right">
                     <a href="{{ action('EstudianteController@index', [$estudiante->id]) }}" class="btn btn-success">Modificar</a>
