@@ -6,13 +6,13 @@
 
 @section('content')
     @if($accion == 'show')
-        <section class="col-md-offset-1 col-md-10" style="height:600px;overflow-y:scroll;">
+        <section class="col-md-12" style="height:600px;overflow-y:scroll;">
             <table class="table table-hover" id="profesores">
                 <div id="btnAgregar">
                     <a href="{{ action('ProfesorController@nuevo', null) }}" class="btn btn-primary">Agregar profesor</a>
                 </div>
                 <caption id="tableTitle">Profesores</caption>
-                <tr>
+                <tr style="background-color: #2175bc">
                     <th class="tableH" style="max-width: 175px; width: 175px; overflow: hidden">Nombre</th>
                     <th class="tableH" style="max-width: 150px; width: 150px; overflow: hidden">Apellidos</th>
                     <th class="tableH" style="max-width: 145px; width: 145px; overflow: hidden">Especialidades</th>
@@ -21,7 +21,7 @@
                 @foreach($profesores as $profesor)
                 <tr>
                     <td class="tableD" style="max-width: 150px; width:150px; overflow: hidden">
-                        {{ $profesor->nombre }}</td>
+                        {{ $profesor->nombre}}</td>
                     <td class="tableD" style="max-width: 175px; width:175px; overflow: hidden">
                         {{ $profesor->apellidos }}</td>
                     <td class="tableD" style="max-width: 145px; width:145px; overflow: hidden">
@@ -97,22 +97,40 @@
                 <caption id="tableTitle">Datos del profesor</caption>
                 <tr>
                     <td class="tableD" style="overflow: hidden">
-                    {{ $profesor->nombre }}</td>
+                    <strong>Nombre:</strong>{{ ' '.$profesor->nombre.' '.$profesor->apellidos }}</td>
                 </tr>
+
                 <tr>
                     <td class="tableD" style="overflow: hidden">
-                    {{ $profesor->apellidos }}</td>
+                        <strong>Especialidad(es):</strong>{{ ' '.$profesor->especialidad }}</td>
                 </tr>
-                <tr>
-                    <td class="tableD" style="overflow: hidden">
-                    {{ $profesor->especialidad }}</td>
+
+
+            </table>
+        </div>
+        <div class="col-md-offset-2 col-md-5">
+            <table class="table table-hover" id="profesor">
+                <caption id="tableTitle">Cursos impartidos</caption>
+                <tr style="background-color: #2175bc">
+                    <th class="tableH" style="max-width: 175px; width: 175px; overflow: hidden">Nombre del curso</th>
+                    <th class="tableH" style="max-width: 110px; width: 150px; overflow: hidden">Sigla</th>
+
                 </tr>
-                @foreach($profesor->cursos as $curso)
-                    <tr>
-                        <td class="tableD" style="overflow: hidden">
-                            {{ $curso->nombre }}</td>
-                    </tr>
-                @endforeach
+
+        @foreach($profesor->cursos as $curso)
+
+            <tr>
+                <td class="tableD" style="overflow: hidden">
+                    {{ $curso->nombre }}
+                </td>
+                <td class="tableD" style="overflow: hidden">
+                    {{ $curso->sigla }}
+                </td>
+            </tr>
+
+        @endforeach
+
+
             </table>
         </div>
     @endif

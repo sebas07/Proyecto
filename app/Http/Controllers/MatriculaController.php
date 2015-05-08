@@ -28,6 +28,11 @@ class MatriculaController extends Controller {
         return redirect('matricula/student/'.$estudiante->id);
     }
 
+    public function cargarEstudiante($id) {
+        $estudiante = Estudiante::find($id);
+        return redirect('matricula/student/'.$estudiante->id);
+    }
+
     public function mostrar($id)
     {
         $accion = 'enrollment';

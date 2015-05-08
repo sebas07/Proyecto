@@ -64,6 +64,4 @@ class EstudianteController extends Controller
 
     }
 
-
-
 }

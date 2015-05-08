@@ -6,13 +6,13 @@
 
 @section('content')
     @if($accion == 'show')
-        <section class="col-md-offset-1 col-md-10" style="height:600px;overflow-y:scroll;">
+        <section class="col-md-12" style="height:600px;overflow-y:scroll;">
             <table class="table table-hover" id="cursos">
                 <div id="btnAgregar">
                     <a href="{{ action('CursosController@nuevo', null) }}" class="btn btn-primary">Agregar curso</a>
                 </div>
                 <caption id="tableTitle">Cursos</caption>
-                <tr>
+                <tr style="background-color: #2175bc">
                     <th class="tableH" style="max-width: 175px; width: 175px; overflow: hidden">Nombre</th>
                     <th class="tableH" style="max-width: 150px; width: 150px; overflow: hidden">Sigla</th>
                     <th class="tableH" style="max-width: 145px; width: 145px; overflow: hidden">Profesor</th>
@@ -25,17 +25,19 @@
                     <td class="tableD" style="max-width: 175px; width:175px; overflow: hidden">
                         {{ $curso->sigla }}</td>
                     <td class="tableD" style="max-width: 145px; width:145px; overflow: hidden">
-                        {{ $curso->profesor->nombre }}</td>
+                        {{ $curso->profesor->nombre.' '.$curso->profesor->apellidos }}</td>
                     <td class="tableD" style="max-width: 250px; overflow: hidden">
                         <div class="right">
-                            <a href="{{ action('CursosController@borrar', [$curso->id]) }}" class="btn btn-danger">Borrar</a>
+                            <a href="{{ action('CursosController@verDatos', [$curso->id]) }}" class="btn btn-success">Ver datos</a>
                         </div>
                         <div class="right">
                             <a href="{{ action('CursosController@existente', [$curso->id]) }}" class="btn btn-success">Modificar</a>
                         </div>
                         <div class="right">
-                            <a href="{{ action('CursosController@verDatos', [$curso->id]) }}" class="btn btn-success">Ver datos</a>
+                            <a href="{{ action('CursosController@borrar', [$curso->id]) }}" class="btn btn-danger">Borrar</a>
                         </div>
+
+
                     </td>
                 </tr>
                 @endforeach
@@ -113,25 +115,26 @@
                 <caption id="tableTitle">Datos del curso</caption>
                 <tr>
                     <td class="tableD" style="overflow: hidden">
-                    {{ $curso->nombre }}</td>
+                    <strong>Nombre del curso:</strong>{{ ' '.$curso->nombre }}</td>
                 </tr>
                 <tr>
                     <td class="tableD" style="overflow: hidden">
-                    {{ $curso->sigla }}</td>
+                        <strong>Sigla:</strong>{{ ' '.$curso->sigla }}</td>
                 </tr>
                 <tr>
                     <td class="tableD" style="overflow: hidden">
-                    {{ $curso->profesor->nombre }}</td>
+                        <strong>Profesor:</strong>{{ ' '.$curso->profesor->nombre.' '.$curso->profesor->apellidos }}</td>
                 </tr>
                 <tr>
                     <td class="tableD" style="overflow: hidden">
-                    {{ $curso->descripcion }}</td>
+                        <strong>Descripcion del curso:</strong>{{ ' '.$curso->descripcion }}</td>
                 </tr>
                 <tr>
                     <td class="tableD" style="overflow: hidden">
-                    {{ $curso->semestre }}</td>
+                        <strong>Semestre:</strong>{{ ' '.$curso->semestre }}</td>
                 </tr>
             </table>
+            <a href="{{ action('CursosController@index', [$curso->id]) }}" class="btn btn-primary">Ver reporte</a>
         </div>
     @endif
 @stop
@@ -160,7 +163,7 @@
     margin: 10px 0px;
 }
 .right {
-    float:right;
+    float:left;
     margin: 5px;
 }
  #textA {

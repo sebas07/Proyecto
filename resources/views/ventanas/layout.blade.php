@@ -10,7 +10,18 @@
     <div class="container">
         <div id="wrapper">
             <header>
+
+                @if(Auth::check())
+                <div id="usuario">
+
+                    <div>{!!'Bienvenido '. Auth::user()->name!!} <a href="{{ url('/auth/logout') }}">Logout</a></div>
+
+
+                </div>
+                @endif
+
             <section class="nav">
+
                 <nav>
                     <ul id="mainMenu">
                         <li><a href="{{ url('/', null) }}">Principal</a></li>
@@ -22,7 +33,10 @@
                         <li><a href="">Reporte</a></li>
                     </ul>
                 </nav>
+
                 </section>
+
+
             </header>
         </div>
         <div class="contenido">
