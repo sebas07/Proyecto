@@ -21,36 +21,29 @@
         </div>
     @elseif($accion == 'enrollment')
         <section class="row">
-            <div class="col-md-6">
+            <div class="col-md-5">
+                <div class="col-md-9">
                 <table class="table table-hover" id="estudiante">
-                    <caption id="tableTitle">Datos del estudiante</caption>
+                    <caption id="tableTitle"><strong>Datos del estudiante</strong></caption>
                     <tr>
                         <td class="tableD" style="overflow: hidden">
-                        {{ $estudiante->carnet }}</td>
+                            {{ $estudiante->nombre. ' '.$estudiante->apellidos}}</td>
                     </tr>
                     <tr>
                         <td class="tableD" style="overflow: hidden">
-                        {{ $estudiante->nombre }}</td>
+                        {{'Carnet: '. $estudiante->carnet }}</td>
                     </tr>
                     <tr>
                         <td class="tableD" style="overflow: hidden">
-                        {{ $estudiante->apellidos }}</td>
+                        {{'Fecha de nacimiento: '. $estudiante->fecha_nacimiento }}</td>
                     </tr>
-                    <tr>
-                        <td class="tableD" style="overflow: hidden">
-                        {{ $estudiante->fecha_nacimiento }}</td>
-                    </tr>
-                    @foreach($estudiante->cursos_matriculados as $curso)
-                        <tr>
-                            <td class="tableD" style="overflow: hidden">
-                            {{ $curso->nombre }}</td>
-                        </tr>
-                    @endforeach
                 </table>
             </div>
+            </div>
+
             <div class="col-md-6">
                 <table class="table table-hover" id="estudiante">
-                    <caption id="tableTitle">Cursos matriculables</caption>
+                    <caption id="tableTitle"><strong>Cursos matriculables</strong></caption>
                     @foreach($otros as $otro)
                         <tr>
                             <td class="tableD" style="max-width: 250px; overflow: hidden">
@@ -66,6 +59,20 @@
                 </table>
             </div>
         </section>
+            <section class="row">
+            <div class="col-md-5">
+                <table class="table table-hover" id="estudiante">
+                    <caption id="tableTitle"><strong>Cursos matriculados</strong></caption>
+                    @foreach($estudiante->cursos_matriculados as $curso)
+                        <tr>
+                            <td class="tableD" style="overflow: hidden">
+                                {{ $curso->nombre }}</td>
+                        </tr>
+                    @endforeach
+                </table>
+            </div>
+        </section>
+
     @endif
 @stop
 
