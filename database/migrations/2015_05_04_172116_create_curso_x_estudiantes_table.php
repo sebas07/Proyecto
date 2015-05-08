@@ -15,6 +15,16 @@ class CreateCursoXEstudiantesTable extends Migration {
 		Schema::create('curso_x_estudiantes', function(Blueprint $table)
 		{
 			$table->increments('id');
+            $table->integer('id_estudiante')->unsigned();
+            $table->integer('id_curso')->unsigned();
+            $table->foreign('id_estudiante')
+                ->references('id')
+                ->on('estudiantes')
+                ->onDelete('cascade');
+            $table->foreign('id_curso')
+                ->references('id')
+                ->on('cursos')
+                ->onDelete('cascade');
 			$table->timestamps();
 		});
 	}

@@ -1,0 +1,21 @@
+
+
+insert into profesor (nombre, apellidos, especialidad) values ('Francisco', 'Blanco', 'Informatica');
+insert into profesor (nombre, apellidos, especialidad) values ('Vivian', 'Murillo', 'Administracion');
+insert into profesor (nombre, apellidos, especialidad) values ('Allan', 'Fernandez', 'Bases de datos');
+insert into profesor (nombre, apellidos, especialidad) values ('Carlos', 'Marquez', 'Matematica');
+insert into cursos (nombre, sigla, id_profesor, descripcion, semestre) values ('Lenguajes para aplicaciones comerciales', 'IF-3500', 1, 'Curso de programacion', 'V');
+insert into cursos (nombre, sigla, id_profesor, descripcion, semestre) values ('Economia en la computacion', 'IF-5000', 2,'Curso de exonomia', 'VI');
+insert into cursos (nombre, sigla, id_profesor, descripcion, semestre) values ('Administracion de bases de datos', 'IF-5100', 3,'Curso de bases de datos', 'V');
+insert into cursos (nombre, sigla, id_profesor, descripcion, semestre) values ('Calculo', 'MA-0320', 4,'Curso de matematica', 'III');
+insert into cursos (nombre, sigla, id_profesor, descripcion, semestre) values ('Analisis de sistemas', 'IF-6000', 1,'Curso de analisis', 'VI');
+insert into cursos (nombre, sigla, id_profesor, descripcion, semestre) values ('Metodos cuantitativos', 'IF-7000', 2,'Curso de toma de decisiones', 'VII');
+insert into estudiantes (carnet, nombre, apellidos, fecha_nacimiento) values ('B20567', 'Jorge', 'Arias', '1994-06-18');
+insert into estudiantes (carnet, nombre, apellidos, fecha_nacimiento) values ('B21213', 'Brayan', 'Nunnez', '1994-08-02');
+insert into estudiantes (carnet, nombre, apellidos, fecha_nacimiento) values ('B23468', 'Emmanuel', 'Jimenez', '1994-01-15');
+insert into estudiantes (carnet, nombre, apellidos, fecha_nacimiento) values ('B22244', 'Yohan', 'Diaz', '1994-06-19');
+insert into curso_x_estudiantes (id_estudiante, id_curso) values (1, 1);
+insert into curso_x_estudiantes (id_estudiante, id_curso) values (1, 2);
+insert into curso_x_estudiantes (id_estudiante, id_curso) values (2, 3);
+insert into curso_x_estudiantes (id_estudiante, id_curso) values (2, 4);
+insert into curso_x_estudiantes (id_estudiante, id_curso) values (1, 5);

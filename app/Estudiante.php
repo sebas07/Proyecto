@@ -13,4 +13,9 @@ class Estudiante extends Model {
         'fecha_nacimiento'
     ];
 
+    public function cursos()
+    {
+        return $this->hasMany('App\CursoXEstudiante', 'id_estudiante');
+    }
+
 }
