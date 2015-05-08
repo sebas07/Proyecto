@@ -6,9 +6,9 @@
 
 @section('content')
     @if($accion == 'start')
-        <h1>Matricula</h1>
-        <hr />
         <div class="col-md-offset-2 col-md-5">
+            <h1>Matricula</h1>
+            <hr />
             {!! Form::open(['url' => 'matricula/student']) !!}
                 <div class="form-group">
                     {!! Form::label('carnet', 'Carnet del estudiante: ') !!}
