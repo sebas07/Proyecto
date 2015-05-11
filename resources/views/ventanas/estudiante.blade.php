@@ -34,7 +34,7 @@
                         <a href="{{ action('MatriculaController@cargarEstudiante', [$estudiante->id]) }}" class="btn" style="background-color: saddlebrown; color: #ffffff">Matricula</a>
                     </div>
                     <div class="right">
-                        <a href="{{ action('EstudianteController@index', [$estudiante->id]) }}" class="btn btn-success">Modificar</a>
+                        <a href="{{ action('EstudianteController@modificarForm', [$estudiante->id]) }}" class="btn btn-success">Modificar</a>
                     </div>
                 <div class="right">
                     <a href="{{ action('EstudianteController@eliminar', [$estudiante->id]) }}" class="btn btn-danger">Borrar</a>

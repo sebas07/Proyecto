@@ -46,6 +46,17 @@
         <hr />
         <br />
         <div class="col-md-offset-2 col-md-5">
+            @if (count($errores) > 0)
+                <div class="alert alert-danger">
+                    <strong>Whoops!</strong> Ha ocurrido un problema con los datos ingresados.<br><br>
+                    <ul>
+                        @foreach ($errores->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             {!! Form::open(['url' => 'profesores/create']) !!}
                 <div class="form-group">
                     {!! Form::label('nombre', 'Nombre del profesor: ') !!}
@@ -69,6 +80,16 @@
         <hr />
         <br />
         <div class="col-md-offset-2 col-md-5">
+            @if (count($errores) > 0)
+                <div class="alert alert-danger">
+                    <strong>Whoops!</strong> Ha ocurrido un problema con los datos ingresados.<br><br>
+                    <ul>
+                        @foreach ($errores->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             {!! Form::model($profesor, ['method' => 'POST', 'action' => ['ProfesorController@modificar', $profesor->id]]) !!}
                 <div class="form-group">
                     {!! Form::label('nombre', 'Nombre del profesor: ') !!}

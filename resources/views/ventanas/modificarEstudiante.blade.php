@@ -19,10 +19,10 @@
                 </ul>
             </div>
         @endif
-        {!! Form::model($estudiante,['url' => 'estudiante/create']) !!}
+        {!! Form::model($estudiante,['url' => 'estudiante/makeupdate']) !!}
             <div class="form-group">
                 {!! Form::label('carnet', 'Carnet del estudiante: ') !!}
-                {!! Form::text('carnet', null, ['class' => "form-control"]) !!}
+                {!! Form::text('carnet', null, ['class' => "form-control",'readonly']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('nombre', 'Nombre del estudiante: ') !!}
@@ -34,12 +34,12 @@
             </div>
             <div class="form-group">
                 {!! Form::label('fecha_nacimiento', 'Fecha de nacimiento: ') !!}
-                {!! Form::input('date', 'fecha_nacimiento', date('Y-m-d'), ['class' => "form-control"]) !!}
+                {!! Form::input('date', 'fecha_nacimiento', $estudiante->fecha_nacimiento, ['class' => "form-control"]) !!}
             </div>
             <div class="form-group">
-                {!! Form::submit('Agregar al estudiante',['class' => "btn btn-primary form-control"]) !!}
+                {!! Form::submit('Modificar estudiante',['class' => "btn btn-primary form-control"]) !!}
             </div>
-
+            {!! Form::text('id', null, ['class' => "form-control", 'required' => "required",'style' => 'visibility: hidden']) !!}
         {!! Form::close() !!}
     </div>
 @stop

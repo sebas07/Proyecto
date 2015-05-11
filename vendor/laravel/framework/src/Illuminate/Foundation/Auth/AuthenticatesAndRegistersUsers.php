@@ -70,6 +70,7 @@ trait AuthenticatesAndRegistersUsers {
 	 */
 	public function postLogin(Request $request)
 	{
+        $msjs = array();
 		$this->validate($request, [
 			'username' => 'required', 'password' => 'required',
 		]);

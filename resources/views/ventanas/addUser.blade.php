@@ -11,7 +11,7 @@
                     <div class="panel-body">
                         @if (count($errores) > 0)
                             <div class="alert alert-danger">
-                                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                                <strong>Whoops!</strong> Hay problemas con los datos ingresados.<br><br>
                                 <ul>
                                     @foreach ($errores->all() as $error)
                                         <li>{{ $error }}</li>
@@ -19,7 +19,8 @@
                                 </ul>
                             </div>
                         @endif
-                            {!! Form::open(['url' => 'ususarios/addnew']) !!}
+
+                            {!! Form::model($usu,['url' => 'ususarios/addnew']) !!}
                             <div class="form-group">
                                 {!! Form::label('name', 'Nombre:',['class' => "col-md-4 control-label"]) !!}
                                 <div class="col-md-6">
