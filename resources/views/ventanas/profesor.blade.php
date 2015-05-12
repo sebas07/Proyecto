@@ -60,15 +60,15 @@
             {!! Form::open(['url' => 'profesores/create']) !!}
                 <div class="form-group">
                     {!! Form::label('nombre', 'Nombre del profesor: ') !!}
-                    {!! Form::text('nombre', null, ['class' => "form-control"]) !!}
+                    {!! Form::text('nombre', null, ['class' => "form-control", 'required' => "required"]) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('apellidos', 'Apellidos del profesor: ') !!}
-                    {!! Form::text('apellidos', null, ['class' => "form-control"]) !!}
+                    {!! Form::text('apellidos', null, ['class' => "form-control", 'required' => "required"]) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('especialidad', 'Especialidad: ') !!}
-                    {!! Form::text('especialidad', null, ['class' => "form-control"]) !!}
+                    {!! Form::text('especialidad', null, ['class' => "form-control", 'required' => "required"]) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::submit('Agregar al profesor',['class' => "btn btn-primary form-control"]) !!}
@@ -93,15 +93,15 @@
             {!! Form::model($profesor, ['method' => 'POST', 'action' => ['ProfesorController@modificar', $profesor->id]]) !!}
                 <div class="form-group">
                     {!! Form::label('nombre', 'Nombre del profesor: ') !!}
-                    {!! Form::text('nombre', null, ['class' => "form-control"]) !!}
+                    {!! Form::text('nombre', null, ['class' => "form-control", 'required' => "required"]) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('apellidos', 'Apellidos del profesor: ') !!}
-                    {!! Form::text('apellidos', null, ['class' => "form-control"]) !!}
+                    {!! Form::text('apellidos', null, ['class' => "form-control", 'required' => "required"]) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('especialidad', 'Especialidad: ') !!}
-                    {!! Form::text('especialidad', null, ['class' => "form-control"]) !!}
+                    {!! Form::text('especialidad', null, ['class' => "form-control", 'required' => "required"]) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::submit('Modificar al profesor',['class' => "btn btn-primary form-control"]) !!}

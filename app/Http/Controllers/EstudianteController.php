@@ -67,7 +67,8 @@ class EstudianteController extends Controller
     public function crear(){
         $input = Request::all();
         $estudiante = new Estudiante();
-        $estudiante->carnet = $input['carnet'];
+        $estudiante->carnet = strtoupper($input['carnet']);
+        $input['carnet'] = $estudiante->carnet;
         $estudiante->nombre = $input['nombre'];
         $estudiante->apellidos = $input['apellidos'];
         $estudiante->fecha_nacimiento = $input['fecha_nacimiento'];
@@ -89,7 +90,8 @@ class EstudianteController extends Controller
         $input = Request::all();
         $id = $input['id'];
         $estudiante = Estudiante::find($id);
-        $estudiante->carnet = $input['carnet'];
+        $estudiante->carnet = strtoupper($input['carnet']);
+        $input['carnet'] = $estudiante->carnet;
         $estudiante->nombre = $input['nombre'];
         $estudiante->apellidos = $input['apellidos'];
         $estudiante->fecha_nacimiento = $input['fecha_nacimiento'];

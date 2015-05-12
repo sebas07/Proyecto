@@ -48,7 +48,17 @@
         <hr />
         <br />
         <div class="col-md-offset-2 col-md-5">
-            {!! Form::open(['url' => 'cursos/create']) !!}
+            @if (count($errores) > 0)
+                <div class="alert alert-danger">
+                    <strong>Whoops!</strong> Ha ocurrido un problema con los datos ingresados.<br><br>
+                    <ul>
+                        @foreach ($errores->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            {!! Form::model($curso,['url' => 'cursos/create']) !!}
                 <div class="form-group">
                     {!! Form::label('nombre', 'Nombre del curso: ') !!}
                     {!! Form::text('nombre', null, ['class' => "form-control"]) !!}
@@ -75,30 +85,40 @@
             {!! Form::close() !!}
         </div>
     @elseif($accion == 'modify')
-        <h1>Agregar un curso nuevo</h1>
+        <h1>Modificar un curso</h1>
         <hr />
         <br />
         <div class="col-md-offset-2 col-md-5">
+            @if (count($errores) > 0)
+                <div class="alert alert-danger">
+                    <strong>Whoops!</strong> Ha ocurrido un problema con los datos ingresados.<br><br>
+                    <ul>
+                        @foreach ($errores->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             {!! Form::model($cursoE, ['method' => 'POST', 'action' => ['CursosController@modificar', $cursoE->id]]) !!}
                 <div class="form-group">
                     {!! Form::label('nombre', 'Nombre del curso: ') !!}
-                    {!! Form::text('nombre', null, ['class' => "form-control"]) !!}
+                    {!! Form::text('nombre', null, ['class' => "form-control", 'required' => "required"]) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('sigla', 'Sigla del curso: ') !!}
-                    {!! Form::text('sigla', null, ['class' => "form-control"]) !!}
+                    {!! Form::text('sigla', null, ['class' => "form-control", 'required' => "required", 'readonly']) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('id_profesor', 'Profesor: ') !!}
-                    {!! Form::select('id_profesor', $profesores, null, ['class' => "form-control"]) !!}
+                    {!! Form::select('id_profesor', $profesores, null, ['class' => "form-control", 'required' => "required"]) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('descripcion', 'Descripcion del curso: ') !!}
-                    {!! Form::textarea('descripcion', null, ['class' => "form-control", 'id' => 'textA']) !!}
+                    {!! Form::textarea('descripcion', null, ['class' => "form-control", 'id' => 'textA', 'required' => "required"]) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('semestre', 'Semestre del curso: ') !!}
-                    {!! Form::text('semestre', null, ['class' => "form-control"]) !!}
+                    {!! Form::text('semestre', null, ['class' => "form-control", 'required' => "required"]) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::submit('Modificar al curso',['class' => "btn btn-primary form-control"]) !!}

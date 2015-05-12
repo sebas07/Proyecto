@@ -26,15 +26,15 @@
             </div>
             <div class="form-group">
                 {!! Form::label('nombre', 'Nombre del estudiante: ') !!}
-                {!! Form::text('nombre', null, ['class' => "form-control"]) !!}
+                {!! Form::text('nombre', null, ['class' => "form-control", 'required' => "required"]) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('apellidos', 'Apellidos del estudiante: ') !!}
-                {!! Form::text('apellidos', null, ['class' => "form-control"]) !!}
+                {!! Form::text('apellidos', null, ['class' => "form-control", 'required' => "required"]) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('fecha_nacimiento', 'Fecha de nacimiento: ') !!}
-                {!! Form::input('date', 'fecha_nacimiento', $estudiante->fecha_nacimiento, ['class' => "form-control"]) !!}
+                {!! Form::input('date', 'fecha_nacimiento', $estudiante->fecha_nacimiento, ['class' => "form-control", 'required' => "required"]) !!}
             </div>
             <div class="form-group">
                 {!! Form::submit('Modificar estudiante',['class' => "btn btn-primary form-control"]) !!}

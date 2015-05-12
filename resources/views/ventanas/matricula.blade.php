@@ -15,10 +15,20 @@
                 <div class="col-md-offset-2 col-md-5">
                     <h1>Matricula</h1>
                     <hr />
+                    @if (count($errores) > 0)
+                        <div class="alert alert-danger">
+                            <strong>Whoops!</strong> Ha ocurrido un problema con los datos ingresados.<br><br>
+                            <ul>
+                                @foreach ($errores->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
             {!! Form::open(['url' => 'matricula/student']) !!}
                 <div class="form-group">
                     {!! Form::label('carnet', 'Carnet del estudiante: ') !!}
-                    {!! Form::text('carnet', null, ['class' => "form-control"]) !!}
+                    {!! Form::text('carnet', null, ['class' => "form-control", 'required' => "required"]) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::submit('Aceptar',['class' => "btn btn-primary form-control"]) !!}

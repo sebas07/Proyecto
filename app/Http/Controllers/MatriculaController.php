@@ -5,7 +5,7 @@ use App\CursoXEstudiante;
 use App\Estudiante;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use Validator;
 use Request;
 
 class MatriculaController extends Controller {
@@ -17,15 +17,35 @@ class MatriculaController extends Controller {
 
     public function index()
     {
+        $errores = [];
         $accion = 'start';
-        return view('ventanas.matricula', compact('accion'));
+        return view('ventanas.matricula', compact('accion','errores'));
+    }
+
+    public function validar($input){
+        $msjs = array(
+            'exists'=>'El estudiante con dicho carnet no se encuentra en nuestros registros'
+        );
+        return Validator::make($input, [
+            'carnet' => 'exists:estudiantes,carnet'
+        ],$msjs);
     }
 
     public function cargar()
     {
         $data = Request::all();
-        $estudiante = Estudiante::where('carnet', '=', $data['carnet'])->first();
-        return redirect('matricula/student/'.$estudiante->id);
+        $carne = strtoupper($data['carnet']);
+        $data['carnet'] = $carne;
+        $validador = $this->validar($data);
+
+        if ($validador->fails()) {
+            $accion = 'start';
+            $errores = $validador->messages();
+            return view('ventanas.matricula', compact('accion','errores'));
+        } else {
+            $estudiante = Estudiante::where('carnet', '=', $data['carnet'])->first();
+            return redirect('matricula/student/' . $estudiante->id);
+        }
     }
 
     public function cargarEstudiante($id) {
@@ -44,7 +64,7 @@ class MatriculaController extends Controller {
             $cursos[] = $curso;
             $ids[] = $c->id_curso;
         }
-        //dd($ids);
+
         $otros = Curso::whereNotIn('id', $ids)->get();
         $estudiante->cursos_matriculados = $cursos;
 
