@@ -2,6 +2,13 @@ Route::get('/', 'HomeController@index');
 
 Route::get('home', 'HomeController@index');
 
+Route::get('usuarios', 'UsuarioController@imprimirUsuarios');
+Route::get('ususarios/add', 'UsuarioController@openFormCreate');
+Route::post('ususarios/addnew', 'UsuarioController@crear');
+Route::get('ususarios/update/{id}', 'UsuarioController@openUpdtForm');
+Route::post('usuario/makeupdate', 'UsuarioController@update');
+Route::get('ususarios/delete/{id}', 'UsuarioController@eliminar');
+
 Route::get('estudiante', 'EstudianteController@index');
 Route::get('estudiante/new', 'EstudianteController@nuevo');
 Route::post('estudiante/create', 'EstudianteController@crear');
@@ -31,7 +38,17 @@ Route::post('cursos/report', 'CursosController@cargarReporte');
 Route::get('cursos/report/{id}', 'CursosController@imprimirReporte');
 
 //rutas usuarios
-Route::get('usuarios', 'UsuarioController@imprimirUsuarios');
+//Route::get('usuarios', 'UsuarioController@imprimirUsuarios');
+//Route::get('ususarios/add', 'UsuarioController@openFormCreate');
+//Route::post('ususarios/addnew', 'UsuarioController@crear');
+//Route::get('ususarios/update/{id}', 'UsuarioController@openUpdtForm');
+//Route::post('usuario/makeupdate', 'UsuarioController@update');
+//Route::get('ususarios/delete/{id}', 'UsuarioController@eliminar');
+//rutas estudiantes de LUIS
+Route::get('estudiante/delete/{id}', 'EstudianteController@eliminar');
+Route:get('estudiante/matricula/{id}','MatriculaController@cargarEstudiante');
+Route::get('estudiante/modificar/{id}','EstudianteController@modificarForm');
+Route::post('estudiante/makeupdate', 'EstudianteController@modificar');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

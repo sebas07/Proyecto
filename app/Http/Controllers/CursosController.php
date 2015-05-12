@@ -25,7 +25,8 @@ class CursosController extends Controller {
 	public function nuevo()
     {
         $accion = 'create';
-        $profesores = Profesor::lists('nombre', 'id');
+        //$profesores = Profesor::lists('nombre', 'id');
+        $profesores = Profesor::select(\DB::raw('concat(nombre, " ", apellidos) as fullname, id'))->lists('fullname', 'id');
         return view('ventanas.curso', compact('cursos', 'accion', 'profesores', 'curso'));
     }
 
