@@ -137,15 +137,35 @@ class CursosController extends Controller {
 
     public function reportIndex()
     {
+        $errores = [];
         $accion = 'start';
-        return view('ventanas.reporte', compact('accion', 'curso'));
+        return view('ventanas.reporte', compact('accion', 'curso','errores'));
+    }
+
+    public function validarReporte($input){
+        $msjs = array(
+            'exists'=>'La sigla ingresada con coincide con algun curso en nuestros registros'
+        );
+        return Validator::make($input, [
+            'sigla' => 'exists:cursos,sigla'
+        ],$msjs);
     }
 
     public function cargarReporte()
     {
         $data = Request::all();
-        $curso = Curso::where('sigla', '=', $data['sigla'])->first();
-        return redirect('cursos/report/'.$curso->id);
+        $data['sigla']= strtoupper($data['sigla']);
+        $validador = $this->validarReporte($data);
+        if ($validador->fails()) {
+            $errores = $validador->messages();
+            $accion = 'start';
+            return view('ventanas.reporte', compact('accion', 'curso','errores'));
+        } else {
+            $curso = Curso::where('sigla', '=', $data['sigla'])->first();
+            return redirect('cursos/report/'.$curso->id);
+        }
+
+
     }
 
     public function imprimirReporte($id)
@@ -159,7 +179,7 @@ class CursosController extends Controller {
             $estudiantes[] = Estudiante::find($idE->id_estudiante);
         }
         $curso->alumnos = $estudiantes;
-        //dd($curso);
+
         return view('ventanas.reporte', compact('accion', 'curso'));
     }
 
