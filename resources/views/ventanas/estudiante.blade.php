@@ -7,7 +7,7 @@
 @section('content')
     <section class="col-md-12" style="height:600px;overflow-y:scroll;">
         <div id="btnAgregar">
-            <a href="{{ action('EstudianteController@nuevo', null) }}" class="btn btn-info">Agregar estudiante</a>
+            <a href="{{ action('EstudianteController@nuevo', null) }}" class="btn btn-primary">Agregar estudiante</a>
         </div>
         <table class="table table-hover" id="estudiantes">
 
@@ -31,7 +31,7 @@
                     {{ $estudiante->fecha_nacimiento }}</td>
                 <td class="tableD" style="width: 340px;overflow: hidden">
                     <div class="right">
-                        <a href="{{ action('MatriculaController@cargarEstudiante', [$estudiante->id]) }}" class="btn" style="background-color: saddlebrown; color: #ffffff">Matricula</a>
+                        <a href="{{ action('MatriculaController@cargarEstudiante', [$estudiante->id]) }}" class="btn btn-primary" style=" ">Matricula</a>
                     </div>
                     <div class="right">
                         <a href="{{ action('EstudianteController@modificarForm', [$estudiante->id]) }}" class="btn btn-success">Modificar</a>

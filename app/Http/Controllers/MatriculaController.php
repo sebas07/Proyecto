@@ -5,6 +5,8 @@ use App\CursoXEstudiante;
 use App\Estudiante;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Input;
 use Validator;
 use Request;
 
@@ -88,7 +90,16 @@ class MatriculaController extends Controller {
             }
         }
         return redirect('matricula/student/'.$idS);
-
     }
 
+    public function autocompletar()
+    {
+        $term = Input::get('term');
+        $results = array();
+        $queries = \DB::table('estudiantes')->where('carnet', 'LIKE', '%'.$term.'%')->get();
+        foreach ($queries as $query) {
+            $results[] = ['label' => $query->carnet.' / '.$query->nombre.' '.$query->apellidos, 'value' => $query->carnet];
+        }
+        return \Illuminate\Support\Facades\Response::json($results);
+    }
 }

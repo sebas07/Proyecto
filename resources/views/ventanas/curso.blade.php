@@ -9,7 +9,7 @@
         <section class="col-md-12" style="height:600px;overflow-y:scroll;">
             <table class="table table-hover" id="cursos">
                 <div id="btnAgregar">
-                    <a href="{{ action('CursosController@nuevo', null) }}" class="btn btn-info">Agregar curso</a>
+                    <a href="{{ action('CursosController@nuevo', null) }}" class="btn btn-primary">Agregar curso</a>
                 </div>
                 <caption id="tableTitle">Cursos</caption>
                 <tr style="background-color: #2175bc">
@@ -160,19 +160,6 @@
         </div>
     @endif
 @stop
-
-{{--<script>--}}
-{{--jQuery(document).ready(function(){--}}
-{{--$('#searchC').autocomplete({--}}
-{{--source: 'autocompletar3.php',--}}
-{{--minLength: 2--}}
-{{--});--}}
-{{--$('#search').autocomplete({--}}
-{{--source: 'autocompletar2.php',--}}
-{{--minLength: 2--}}
-{{--});--}}
-{{--});--}}
-{{--</script>--}}
 
 <style>
 #tableTitle {

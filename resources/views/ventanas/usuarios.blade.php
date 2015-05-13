@@ -4,7 +4,7 @@
 
 @section('content')
     <section class="col-md-12" style="height:600px;overflow-y:scroll;">
-        <a id="btnAgregar" class="btn btn-info" href="ususarios/add">Agregar un nuevo usuario</a>
+        <a id="btnAgregar" class="btn btn-primary" href="ususarios/add">Agregar un nuevo usuario</a>
         <table id="usaurios" class="table table-hover">
             <caption id="tableTitle">Lista de usuarios</caption>
             <tr style="background-color: #2175bc">

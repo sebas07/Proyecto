@@ -9,7 +9,7 @@
         <section class="col-md-12" style="height:600px;overflow-y:scroll;">
             <table class="table table-hover" id="profesores">
                 <div id="btnAgregar">
-                    <a href="{{ action('ProfesorController@nuevo', null) }}" class="btn btn-info">Agregar profesor</a>
+                    <a href="{{ action('ProfesorController@nuevo', null) }}" class="btn btn-primary">Agregar profesor</a>
                 </div>
                 <caption id="tableTitle">Profesores</caption>
                 <tr style="background-color: #2175bc">

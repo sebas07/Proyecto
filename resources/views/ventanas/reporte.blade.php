@@ -22,7 +22,7 @@
             {!! Form::open(['url' => 'cursos/report']) !!}
                 <div class="form-group">
                     {!! Form::label('sigla', 'Sigla del curso: ') !!}
-                    {!! Form::text('sigla', null, ['class' => "form-control"]) !!}
+                    {!! Form::text('sigla', null, ['id' => "campo", 'class' => "form-control"]) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::submit('Aceptar',['class' => "btn btn-primary form-control"]) !!}
@@ -40,26 +40,22 @@
                 </tr>
                 <tr>
                     <td class="tableD" style="overflow: hidden">
-                        <strong>Profesor: </strong>{{ $curso->profesor->nombre.' '.$curso->profesor->apellidos }}</td>
+                        <strong>Profesor: </strong>{{ $curso->profesor->nombre.' '.$curso->profesor->apellidos }}
+                    </td>
                 </tr>
                 <tr>
                     <td class="tableD" style="overflow: hidden">
                         <strong>Semestre: </strong>{{ $curso->semestre }}</td>
                 </tr>
-
             </table>
         </div>
         <section class="col-md-offset-2 col-md-6" style="overflow-y:scroll;">
-
             <table class="table table-hover" id="estudiantes">
-
                 <caption id="tableTitle"><strong>Estudiantes inscritos</strong></caption>
                 <tr style="background-color: #2175bc">
                     <th class="tableH" style="overflow: hidden">Carnet</th>
                     <th class="tableH" style=" overflow: hidden">Nombre</th>
                     <th class="tableH" style=" overflow: hidden">Apellidos</th>
-
-
                 </tr>
                 @foreach( $curso->alumnos as $estudiante)
                     <tr>
@@ -69,10 +65,22 @@
                             {{ $estudiante->nombre }}</td>
                         <td class="tableD" style="overflow: hidden">
                             {{ $estudiante->apellidos }}</td>
-
                     </tr>
                 @endforeach
             </table>
         </section>
     @endif
 @stop
+
+
+<script src="{{asset('query/jquery-1.11.3.js')}}"></script>
+<script src="{{asset('query/jquery-ui.js')}}"></script>
+<link rel="stylesheet" href="{{asset('query/jquery-ui.css')}}">
+<script>
+    jQuery(document).ready(function() {
+        $('#campo').autocomplete({
+            source: "{{ url('courses/autocomplete', null) }}",
+            minLenght: 1
+        });
+    });
+</script>

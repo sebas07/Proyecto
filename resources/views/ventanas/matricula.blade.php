@@ -6,29 +6,23 @@
 
 @section('content')
     @if($accion == 'start')
-
-        {{--<div class="col-md-offset-2 col-md-7">--}}
-                {{--<h1>Matricula</h1>--}}
-                {{--<hr />--}}
-            {{--</div>--}}
-            {{--<div class="col-md-offset-3 col-md-5">--}}
-                <div class="col-md-offset-2 col-md-5">
-                    <h1>Matricula</h1>
-                    <hr />
-                    @if (count($errores) > 0)
-                        <div class="alert alert-danger">
-                            <strong>Whoops!</strong> Ha ocurrido un problema con los datos ingresados.<br><br>
-                            <ul>
-                                @foreach ($errores->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+        <div class="col-md-offset-2 col-md-5">
+            <h1>Matricula</h1>
+            <hr />
+            @if (count($errores) > 0)
+                <div class="alert alert-danger">
+                    <strong>Whoops!</strong> Ha ocurrido un problema con los datos ingresados.<br><br>
+                        <ul>
+                            @foreach ($errores->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                </div>
+            @endif
             {!! Form::open(['url' => 'matricula/student']) !!}
                 <div class="form-group">
                     {!! Form::label('carnet', 'Carnet del estudiante: ') !!}
-                    {!! Form::text('carnet', null, ['class' => "form-control", 'required' => "required"]) !!}
+                    {!! Form::text('carnet', null, ['id' => "campo", 'class' => "form-control", 'required' => "required"]) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::submit('Aceptar',['class' => "btn btn-primary form-control"]) !!}
@@ -75,27 +69,25 @@
             </div>
             <br />
         </section>
-            <section class="row">
-                <div class="col-md-offset-3 col-md-6">
-                    <table class="table table-hover" id="estudiante">
-                        <caption id="tableTitle"><strong>Cursos matriculables</strong></caption>
-                        @foreach($otros as $otro)
-                            <tr>
-                                <td class="tableD" style="max-width: 250px; overflow: hidden">
-                                    <div class="right">
-                                        <a href="{{ action('MatriculaController@matricular', [$estudiante->id, $otro->id]) }}" class="btn btn-success">Matricular</a>
-                                    </div>
-                                    <div class="left">
-                                        {{ $otro->sigla.'  '.$otro->nombre }}
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </table>
-                </div>
-
+        <section class="row">
+            <div class="col-md-offset-3 col-md-6">
+                <table class="table table-hover" id="estudiante">
+                    <caption id="tableTitle"><strong>Cursos matriculables</strong></caption>
+                    @foreach($otros as $otro)
+                        <tr>
+                            <td class="tableD" style="max-width: 250px; overflow: hidden">
+                                <div class="right">
+                                    <a href="{{ action('MatriculaController@matricular', [$estudiante->id, $otro->id]) }}" class="btn btn-success">Matricular</a>
+                                </div>
+                                <div class="left">
+                                    {{ $otro->sigla.'  '.$otro->nombre }}
+                                </div>
+                            </td>
+                        </tr>
+                     @endforeach
+                </table>
+            </div>
         </section>
-
     @endif
 @stop
 
@@ -105,3 +97,14 @@
     margin: 5px;
 }
 </style>
+<script src="{{asset('query/jquery-1.11.3.js')}}"></script>
+<script src="{{asset('query/jquery-ui.js')}}"></script>
+<link rel="stylesheet" href="{{asset('query/jquery-ui.css')}}">
+<script>
+    jQuery(document).ready(function() {
+        $('#campo').autocomplete({
+            source: "{{ url('students/autocomplete', null) }}",
+            minLenght: 1
+        });
+    });
+</script>

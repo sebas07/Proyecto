@@ -4,6 +4,7 @@ use App\Curso;
 use App\Estudiante;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 use Validator;
 use App\Profesor;
 use Request;
@@ -68,9 +69,6 @@ class CursosController extends Controller {
             $curso->save();
             return redirect('cursos');
         }
-
-
-
     }
 
     public function validarUpd($input){
@@ -181,6 +179,17 @@ class CursosController extends Controller {
         $curso->alumnos = $estudiantes;
 
         return view('ventanas.reporte', compact('accion', 'curso'));
+    }
+
+    public function autocompletar()
+    {
+        $term = Input::get('term');
+        $results = array();
+        $queries = \DB::table('cursos')->where('sigla', 'LIKE', '%'.$term.'%')->get();
+        foreach ($queries as $query) {
+            $results[] = ['label' => $query->sigla.' / '.$query->nombre, 'value' => $query->sigla];
+        }
+        return \Illuminate\Support\Facades\Response::json($results);
     }
 
 }

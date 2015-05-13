@@ -1,3 +1,6 @@
+Route::get('students/autocomplete', 'MatriculaController@autocompletar');
+Route::get('courses/autocomplete', 'CursosController@autocompletar');
+
 Route::get('/', 'HomeController@index');
 
 Route::get('home', 'HomeController@index');
