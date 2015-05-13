@@ -65,7 +65,9 @@
                                 {{ $curso->sigla.'    '.$curso->nombre }}
                             </td>
                             <td class="tableD" style="overflow: hidden">
-                                <a href="{{ action('MatriculaController@desMatricular', [$estudiante->id, $curso->id]) }}" class="btn btn-danger">Quitar</a>
+                                <a href="{{ action('MatriculaController@desMatricular', [$estudiante->id, $curso->id]) }}"
+                                onclick="return confirm('¿Realmente desea quitar el curso {{ $curso->sigla }}?')"
+                                class="btn btn-danger">Quitar</a>
                             </td>
                         </tr>
                     @endforeach

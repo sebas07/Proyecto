@@ -8,35 +8,30 @@
 </head>
 <body>
     <div class="container">
-        <div id="wrapper">
+        <div id="wrapper" >
             <header>
-
                 @if(Auth::check())
                 <div id="usuario">
 
-                    <div>{!!'Bienvenido '. Auth::user()->name!!} <a href="{{ url('/auth/logout') }}">Logout</a></div>
-
-
+                    <div>
+                        <strong>{!!'Bienvenido '. Auth::user()->name!!}</strong>
+                        <a href="{{ url('/auth/logout') }}" class="text-danger"><strong>Logout</strong></a>
+                    </div>
                 </div>
                 @endif
-
-            <section class="nav">
-
-                <nav>
-                    <ul id="mainMenu">
-                        <li><a href="{{ url('/', null) }}">Principal</a></li>
-                        <li><a href="{{ url('usuarios', null) }}">Administrar usuarios</a></li>
-                        <li><a href="{{ url('estudiante', null) }}">Gestion de estudiante</a></li>
-                        <li><a href="{{ url('cursos', null) }}">Cursos</a></li>
-                        <li><a href="{{ url('profesores', null) }}">Profesores</a></li>
-                        <li><a href="{{ url('matricula', null) }}">Matricula</a></li>
-                        <li><a href="{{ url('cursos/report', null) }}">Reporte</a></li>
-                    </ul>
-                </nav>
-
+                <section class="nav">
+                    <nav>
+                        <ul id="mainMenu">
+                            <li><a href="{{ url('/', null) }}"><strong>Principal</strong></a></li>
+                            <li><a href="{{ url('usuarios', null) }}"><strong>Gestión de usuarios</strong></a></li>
+                            <li><a href="{{ url('estudiante', null) }}"><strong>Estudiantes</strong></a></li>
+                            <li><a href="{{ url('cursos', null) }}"><strong>Cursos</strong></a></li>
+                            <li><a href="{{ url('profesores', null) }}"><strong>Profesores</strong></a></li>
+                            <li><a href="{{ url('matricula', null) }}"><strong>Matricula</strong></a></li>
+                            <li><a href="{{ url('cursos/report', null) }}"><strong>Reporte de curso</strong></a></li>
+                        </ul>
+                    </nav>
                 </section>
-
-
             </header>
         </div>
         <div class="contenido">

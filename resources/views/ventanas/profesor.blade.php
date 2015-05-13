@@ -9,7 +9,7 @@
         <section class="col-md-12" style="height:600px;overflow-y:scroll;">
             <table class="table table-hover" id="profesores">
                 <div id="btnAgregar">
-                    <a href="{{ action('ProfesorController@nuevo', null) }}" class="btn btn-primary">Agregar profesor</a>
+                    <a href="{{ action('ProfesorController@nuevo', null) }}" class="btn btn-info">Agregar profesor</a>
                 </div>
                 <caption id="tableTitle">Profesores</caption>
                 <tr style="background-color: #2175bc">
@@ -28,13 +28,15 @@
                         {{ $profesor->especialidad }}</td>
                     <td class="tableD" style="max-width: 250px; overflow: hidden">
                     <div class="right">
-                        <a href="{{ action('ProfesorController@borrar', [$profesor->id]) }}" class="btn btn-danger">Borrar</a>
+                        <a href="{{ action('ProfesorController@borrar', [$profesor->id]) }}"
+                        onclick="return confirm('¿Realmente desea eliminar al profesor {{ $profesor->nombre.' '.$profesor->apellidos }}?')"
+                        class="btn btn-danger">Borrar</a>
                     </div>
                     <div class="right">
                         <a href="{{ action('ProfesorController@existente', [$profesor->id]) }}" class="btn btn-success">Modificar</a>
                     </div>
                         <div class="right">
-                            <a href="{{ action('ProfesorController@verDatos', [$profesor->id]) }}" class="btn btn-success">Ver datos</a>
+                            <a href="{{ action('ProfesorController@verDatos', [$profesor->id]) }}" class="btn btn-primary">Ver datos</a>
                         </div>
                     </td>
                 </tr>
@@ -76,7 +78,7 @@
             {!! Form::close() !!}
         </div>
     @elseif($accion == 'modify')
-        <h1>Agregar un profesor nuevo</h1>
+        <h1>Modificar profesor </h1>
         <hr />
         <br />
         <div class="col-md-offset-2 col-md-5">
@@ -166,6 +168,9 @@
 }
 #btnAgregar {
     margin: 10px 0px;
+}
+th {
+     color: #ffffff;
 }
 .right {
     float:right;

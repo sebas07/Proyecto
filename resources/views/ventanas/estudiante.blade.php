@@ -5,9 +5,9 @@
 @stop
 
 @section('content')
-    <section class="col-md-offset-1 col-md-11" style="height:600px;overflow-y:scroll;">
+    <section class="col-md-12" style="height:600px;overflow-y:scroll;">
         <div id="btnAgregar">
-            <a href="{{ action('EstudianteController@nuevo', null) }}" class="btn btn-primary">Agregar estudiante</a>
+            <a href="{{ action('EstudianteController@nuevo', null) }}" class="btn btn-info">Agregar estudiante</a>
         </div>
         <table class="table table-hover" id="estudiantes">
 
@@ -37,7 +37,9 @@
                         <a href="{{ action('EstudianteController@modificarForm', [$estudiante->id]) }}" class="btn btn-success">Modificar</a>
                     </div>
                 <div class="right">
-                    <a href="{{ action('EstudianteController@eliminar', [$estudiante->id]) }}" class="btn btn-danger">Borrar</a>
+                    <a href="{{ action('EstudianteController@eliminar', [$estudiante->id]) }}"
+                    onclick="return confirm('¿Realmente desea eliminar al estudiante {{ $estudiante->nombre.' '.$estudiante->apellidos }}?')"
+                    class="btn btn-danger">Borrar</a>
                 </div>
 
                 </td>
@@ -56,6 +58,9 @@
 }
 #btnAgregar {
     margin: 10px 0px;
+}
+th {
+    color: #ffffff;
 }
 .right {
     float:left;

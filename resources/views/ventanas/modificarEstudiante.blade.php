@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-    <h1>Agregar un estudiante nuevo</h1>
+    <h1>Modificar un estudiante</h1>
     <hr />
     <br />
     <div class="col-md-offset-2 col-md-5">

@@ -9,7 +9,7 @@
         <section class="col-md-12" style="height:600px;overflow-y:scroll;">
             <table class="table table-hover" id="cursos">
                 <div id="btnAgregar">
-                    <a href="{{ action('CursosController@nuevo', null) }}" class="btn btn-primary">Agregar curso</a>
+                    <a href="{{ action('CursosController@nuevo', null) }}" class="btn btn-info">Agregar curso</a>
                 </div>
                 <caption id="tableTitle">Cursos</caption>
                 <tr style="background-color: #2175bc">
@@ -28,13 +28,15 @@
                         {{ $curso->profesor->nombre.' '.$curso->profesor->apellidos }}</td>
                     <td class="tableD" style="max-width: 250px; overflow: hidden">
                         <div class="right">
-                            <a href="{{ action('CursosController@verDatos', [$curso->id]) }}" class="btn btn-success">Ver datos</a>
+                            <a href="{{ action('CursosController@verDatos', [$curso->id]) }}" class="btn btn-primary">Ver datos</a>
                         </div>
                         <div class="right">
                             <a href="{{ action('CursosController@existente', [$curso->id]) }}" class="btn btn-success">Modificar</a>
                         </div>
                         <div class="right">
-                            <a href="{{ action('CursosController@borrar', [$curso->id]) }}" class="btn btn-danger">Borrar</a>
+                            <a href="{{ action('CursosController@borrar', [$curso->id]) }}"
+                            onclick="return confirm('¿Realmente desea eliminar el curso {{ $curso->nombre }}?')"
+                            class="btn btn-danger">Borrar</a>
                         </div>
 
 
@@ -181,6 +183,9 @@
 }
 #btnAgregar {
     margin: 10px 0px;
+}
+th {
+     color: #ffffff;
 }
 .right {
     float:left;

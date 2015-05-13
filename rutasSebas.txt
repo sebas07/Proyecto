@@ -17,6 +17,7 @@ Route::get('matricula', 'MatriculaController@index');
 Route::post('matricula/student', 'MatriculaController@cargar');
 Route::get('matricula/student/{id}', 'MatriculaController@mostrar');
 Route::get('matricula/enroll/{idS}/{idC}', 'MatriculaController@matricular');
+Route::get('matricula/unroll/{idS}/{idC}', 'MatriculaController@desMatricular');
 
 Route::get('profesores', 'ProfesorController@index');
 Route::get('profesores/new', 'ProfesorController@nuevo');
@@ -49,6 +50,8 @@ Route::get('estudiante/delete/{id}', 'EstudianteController@eliminar');
 Route:get('estudiante/matricula/{id}','MatriculaController@cargarEstudiante');
 Route::get('estudiante/modificar/{id}','EstudianteController@modificarForm');
 Route::post('estudiante/makeupdate', 'EstudianteController@modificar');
+Route::get('visitante/addUser', 'VisitanteController@openFormCreate');
+Route::post('visitante/addnewUser', 'VisitanteController@crear');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
